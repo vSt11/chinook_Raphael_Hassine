@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Album List</title>
+</head>
+<body>
+    <h1>Album List</h1>
+    <ul>
+        {% for album in albums %}
+        <li>
+            <a href="#{{ album.id }}">{{ album.title }}</a>
+            {% if album.artist %}
+            - {{ album.artist.name }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% for album in albums %}
+    <h2 id="{{ album.id }}">{{ album.title }}</h2>
+    <ul>
+        {% for track in track_lis.album.id %}
+        <li>
+            {{ track.name }} -
+            {% if track.composer %}
+            {{ track.composer }} -
+            {% endif %}
+            {{ track.milliseconds|divisibleby:1000 }} seconds -
+            {{ track.unitPrice }}$
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>

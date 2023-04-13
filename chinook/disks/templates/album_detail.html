@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ album.title }} - {{ album.artist.name }}</title>
+  </head>
+  <body>
+    <h1>{{ album.title }}</h1>
+    <h2>{{ album.artist.name }}</h2>
+
+    
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Composer</th>
+            <th>Duration (milliseconds)</th>
+            <th>Unit Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for track in tracks %}
+            <tr>
+              <td>{{ track.name }}</td>
+              <td>{{ track.composer }}</td>
+              <td>{{ track.milliseconds }}</td>
+              <td>{{ track.unitPrice }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No tracks found for this album.</p>
+    
+  </body>
+</html>
+
