@@ -1,11 +1,11 @@
-from django.template import loader
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
-from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from disks.models import Album
+from disks.models import Album, Artist, Track
 
 def album_list(request):
     # Récupérer tous les albums de la base de données
@@ -14,14 +14,17 @@ def album_list(request):
 
 def album_detail(request, album_id):
     album = get_object_or_404(Album, pk=album_id)
-    tracks = album.track_set.all()
-    artist_name = album.artist.name
-    album_title = album.title
-    album_price = album.price
+    #tracks = album.track_set.all()
+    #artist_name = Album.artist
+   # album_title = Album.title
+    #album_unitPrice = Album.unitPrice
+    
     context = {
-        'tracks': tracks,
-        'artist_name': artist_name,
-        'album_title': album_title,
-        'album_price': album_price
+        'album' : album
+        #'Track': tracks,
+        #'Artist.name':artist_name,
+        #'Album.title': album_title,
+        #'track.unitPrice': album_unitPrice
     }
-    return render(request, 'disks/album_detail.html', context)
+    
+    return render(request, 'album_detail.html', context)
